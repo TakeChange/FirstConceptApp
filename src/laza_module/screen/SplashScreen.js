@@ -6,7 +6,7 @@ const SplashScreen = ({navigation}) =>{
 
     useEffect(()=>{
         setTimeout(()=>{
-            navigation.navigate('LazaLogin')
+            navigation.navigate('AuthOptionScreen')
         },4000)
     },[])
 
