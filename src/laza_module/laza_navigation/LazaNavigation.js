@@ -6,6 +6,7 @@ import SplashScreen from '../screen/SplashScreen';
 import LoginScreen from '../screen/auth/LoginScreen';
 import AuthOptionScreen from '../screen/auth/AuthOptionScreen';
 import RegistrationScreen from '../screen/auth/RegistrationScreen';
+import HomeScreen from '../screen/home_module/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,11 @@ const LazaNavigation = () => {
           options={{ headerShown: false }}
         />
 
+        <Stack.Screen
+          component={HomeScreen}
+          name="LazaHome"
+          options={{headerShown:false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -1,14 +1,16 @@
-import { View, Text, StyleSheet, Image } from "react-native"
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
 
 
-const BackWithHeaderComp = ({ StartUrl, HeaderText, EndUrl }) => {
+const BackWithHeaderComp = ({ StartUrl, HeaderText, EndUrl,onPress }) => {
 
     return (
         <View style={styles.container}>
             {StartUrl != null ?
-                <Image
-                    source={StartUrl}
-                />
+                <TouchableOpacity onPress={onPress}>
+                    <Image
+                        source={StartUrl}
+                    />
+                </TouchableOpacity>
                 :
                 null
             }

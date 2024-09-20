@@ -7,7 +7,7 @@ import { Button } from 'react-native-paper'
 import LazaButtonComp from '../../component/LazaButtonComp'
 import { black_faint } from '../../constant/COLOR'
 
-const AuthOptionScreen = () => {
+const AuthOptionScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerView}>
@@ -60,7 +60,7 @@ const AuthOptionScreen = () => {
             <Text style={{ textAlign: 'center', color: black_faint }}>
               Already have an account?
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('LazaLogin')}>
               <Text style={{ fontWeight: '700', color: 'black' }}> Signin</Text>
             </TouchableOpacity>
           </View>
@@ -68,6 +68,7 @@ const AuthOptionScreen = () => {
         <View style={styles.buttonView}>
           <LazaButtonComp
             buttonText={'Create an Account'}
+            onPress={()=>navigation.navigate('LazaRegistration')}
           />
         </View>
       </View>

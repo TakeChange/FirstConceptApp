@@ -6,13 +6,38 @@ import { black_faint, header_color } from '../../constant/COLOR'
 import TitleWithTextInputComp from '../../component/TitleWithTextInputComp'
 import TextWithToggleComp from '../../component/TextWithToggleComp'
 import LazaButtonComp from '../../component/LazaButtonComp'
+import { checkPassword, checkUsername } from '../../constant/Validation'
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
 
   const [toggleValue, setToggleValue] = useState(false)
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+
+  const [usernameError,setUsernameError] = useState("")
+  const [passwordError,setPasswordError] = useState("")
 
   const changeToggle = () => {
     setToggleValue(!toggleValue)
+  }
+
+  const checkValidation=()=>{
+    var flag=true;
+    setUsernameError(checkUsername(username))
+    setPasswordError(checkPassword(password))
+
+    console.log('usernameError:',usernameError)
+    console.log('passwordError:',passwordError)
+
+    if(usernameError!=""){
+      flag=false
+    }else if(passwordError!=""){
+      flag=false
+    }
+    else
+    if(flag==true){
+      navigation.navigate('LazaHome')
+    }
   }
 
   return (
@@ -23,6 +48,7 @@ const LoginScreen = () => {
         <View style={styles.headerView}>
           <BackWithHeaderComp
             StartUrl={backIcon}
+            onPress={()=>navigation.navigate('AuthOptionScreen')}
           />
           <Text style={styles.headerText}>Welcome</Text>
           <Text style={styles.subHeaderText}>Please enter your data to continue</Text>
@@ -31,12 +57,15 @@ const LoginScreen = () => {
         <View style={styles.inputView}>
           <TitleWithTextInputComp
             label={'Username'}
-
+            onChangeText={(text)=>setUsername(text)}
           />
+          <Text style={{color:'red'}}>{usernameError}</Text>
           <TitleWithTextInputComp
             label={'Password'}
             secureTextEntry={true}
+            onChangeText={(pass)=>setPassword(pass)}
           />
+          <Text style={{color:'red'}}>{passwordError}</Text>
           <TouchableOpacity style={styles.forgetView}>
             <Text style={styles.forgetText}>Forgot password?</Text>
           </TouchableOpacity>
@@ -54,6 +83,7 @@ const LoginScreen = () => {
           <View style={styles.buttonStyle}>
             <LazaButtonComp 
               buttonText={'Login'}
+              onPress={checkValidation}
             />
           </View>
 
